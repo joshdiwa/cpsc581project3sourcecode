@@ -8,11 +8,11 @@
 
 int digitalOutput = 2; // Digital Output Pin
 int analogOutput = A0; // Analog Output Pin (Noise Sensor)
-int soundLevelLow = 80;
-int soundLevelMid = 90;
-int soundLevelMidHigh = 100;
-int soundLevelHigh = 110;
-int soundLevelXtreme = 120;
+int soundLevelLow = 82;
+int soundLevelMid = 85;
+int soundLevelMidHigh = 87;
+int soundLevelHigh = 89;
+int soundLevelXtreme = 91;
 int noiseLevelValue = 0; // Used to track noise level.
 
 void setup() {
@@ -27,11 +27,7 @@ void setup() {
 
 void loop() {
   noiseLevelValue = analogRead(analogOutput); // Read Analog Value.
-  //Serial.print("Analog: ");
-  //Serial.print(noiseLevelValue);
-  //Serial.print(" ");
-    //Serial.print("Digital: ");
-  //Serial.println(digitalRead(digitalOutput));
+ 
 
   digitalWrite(8, LOW);
   digitalWrite(9, LOW);
@@ -41,32 +37,36 @@ void loop() {
   Serial.println(noiseLevelValue);
 
   if (noiseLevelValue >= soundLevelLow) {
-    digitalWrite(8, LOW);
+    digitalWrite(8, HIGH);
     digitalWrite(9, LOW);
     digitalWrite(10, LOW);
     digitalWrite(11, LOW);
-    digitalWrite(12, HIGH);
+    digitalWrite(12, LOW);
+    delay(25);
     if (noiseLevelValue >= soundLevelMid) {
-      digitalWrite(8, LOW);
-      digitalWrite(9, LOW);
+      digitalWrite(8, HIGH);
+      digitalWrite(9, HIGH);
       digitalWrite(10, LOW);
-      digitalWrite(11, HIGH);
-      digitalWrite(12, HIGH);
+      digitalWrite(11, LOW);
+      digitalWrite(12, LOW);
+      delay(25);
       }
     if (noiseLevelValue >= soundLevelMidHigh) {
-      digitalWrite(8, LOW);
-      digitalWrite(9, LOW);
+      digitalWrite(8, HIGH);
+      digitalWrite(9, HIGH);
       digitalWrite(10, HIGH);
-      digitalWrite(11, HIGH);
-      digitalWrite(12, HIGH);
+      digitalWrite(11, LOW);
+      digitalWrite(12, LOW);
+      delay(25);
      }
 
     if (noiseLevelValue >= soundLevelHigh) {
-      digitalWrite(8, LOW);
+      digitalWrite(8, HIGH);
       digitalWrite(9, HIGH);
       digitalWrite(10, HIGH);
       digitalWrite(11, HIGH);
-      digitalWrite(12, HIGH);
+      digitalWrite(12, LOW);
+      delay(25);
       }
 
     if (noiseLevelValue >= soundLevelXtreme) {
@@ -75,6 +75,7 @@ void loop() {
       digitalWrite(10, HIGH);
       digitalWrite(11, HIGH);
       digitalWrite(12, HIGH);
+      delay(25);
       }
     }
 
